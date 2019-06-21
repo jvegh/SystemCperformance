@@ -1,0 +1,68 @@
+/*!
+@mainpage  Welcome to the SysCperfBase tools
+
+@section WHAT_IS_IT What is it?
+
+The present document is your guide towards learning
+how to use the performance measuring tools provided here.
+The tool does not provide some accurate, verified perfrormance values.
+Rather, it provides a way to find out which option you might think
+to use in your design has which effect on the performance.
+
+This document is designed to help users to do their steps towards using the tool.
+
+
+@subsection THE_PROBLEM The problem
+
+The SystemC can be used to model complete electronic HW+SW systems and circuits,
+as well as non-electronics related but time-sensitive simulations.
+In such cases the computational performance and efficacy is vital.
+
+The case of SystemC simulations is analogous with the case of supercomputers:
+the existing limitations
+of the physical resources introduce performance limitations on the
+performance of the applications. The efficacy of running an application,
+however, depends on the type of the application: different benchmarks
+show up different efficiency. In other words, the time needed to perform
+the same amount of calculation depends both on the HW and the SW,
+just because of the actual limitations.
+
+In the case of a SystemC simulation, one has to speak about (at least)
+three different times. The simulated process has its own (virtual) time,
+independently how much work the simulation for the computing system means.
+The processing time on a computer comprises (non-payload) actions
+taken by the SystemC kernel and the payload operations providing
+the values of the states for the simulated process; resulting
+in the time of (payload) computation needed to solve the task.
+What makes the case slightly worse, that also the system makes
+operations (on behalf of the simulated task), so both system and user
+processing times must be accounted for.
+Both these non-payload and payload computations are performed by the
+same processor and they cannot be separated without special tools.
+The efficacy of solving a certain task of a certain size
+
+All these computations sit on the top of a concrete computing system,
+with its physical characteristics like processor computing performance,
+memory bandwidth, disk transfer speed, caches, scheduling, etc.;
+and which must make its housekeeping for hosting the simulations.
+
+
+@subsection THE_SOLUTION The present solution
+
+The present tools are based on simple (carefully designed) time measurements,
+with the clear intention of introducing a set of "benchmarks", again
+in analogy with supercomputing. The benchmarks programs comprise a
+standardized mixture of machine instructions (in this case: around
+some SystemC actions) and repeated many times in order to derive
+as accurate time values as possible.
+
+@section INSIDE What is inside?
+
+
+
+@section NOTE A side note
+<b>An important note: this is a one-men project, and targets a special goal
+to study some performance issues of systems through implementing tham in SystemC.
+However, with the help of the community, it may turn into a well-established
+toolset.</b>
+*/

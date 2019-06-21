@@ -1,0 +1,14 @@
+
+/**
+@page User_Guide_page User's Guide
+
+(for users of the SystemC, wanting to find out the performance of
+some components of their design)
+        @htmlonly
+        <hr>
+        @endhtmlonly
+@section USER_GUIDE_TABLE_OF_CONTENTS Table of contents
+    -# @subpage USER_GUIDE_GENERAL_INFORMATION
+
+*/
+

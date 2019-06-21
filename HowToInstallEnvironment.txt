@@ -1,0 +1,86 @@
+ These are just my suggestions to set up your environment
+ It worked for me on Ubuntu Linux 18.04
+
+Install CMake:
+  sudo apt-get install cmake
+
+  Install SystemC:
+  Download SystemC 2.3.3 from
+    http://www.accellera.org/images/downloads/standards/systemc/systemc-2.3.3.tar.gz
+  untar it
+     tar -xzvf systemc-2.3.3.tar.gz
+  cd systemc-2.3.3/
+  mkdir build
+  cd build
+  export CXX=g++
+Set environment:
+  !!! or maybe better /opt/systemc
+  export SYSTEMC_HOME=/opt/systemc
+  export LD_LIBRARY_PATH=/opt/systemc/lib-linux64
+  sudo mkdir /opt/systemc
+  !!! Not written in the installation instructions:
+  !!! either define manually CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT
+  !!! or comment out lines 541  and 555
+  !!! Edit line 276: change CMAKE_CXX_STANDARD 98 to 14
+Create the SystemC library
+  CMake ..
+  make
+  sudo make install
+
+Install git
+  sudo apt-get install git
+
+Install g++:
+  sudo apt install build-essential
+
+To work with documentation
+Install .CHM viewer
+  sudo apt-get install kchmviewer
+  or
+  sudo apt-get install xchm
+
+  sudo apt-get install lazarus-ide
+  sudo apt-get install graphviz
+  sudo apt-get install doxygen
+  sudo apt-get install chm2pdf
+  sudo apt-get install flex
+
+For using goggle test:
+
+Install gmock:
+  sudo apt-get update
+  sudo apt-get install google-mock
+
+Install GTest
+  sudo apt-get install libgtest-dev
+  cd /usr/src/googletest/googletest
+  sudo mkdir build
+  cd build
+  sudo cmake ..
+  sudo make
+  sudo cp libgtest* /usr/lib/
+  cd ..
+  sudo rm -rf build
+
+sudo mkdir /usr/local/lib/googletest
+sudo ln -s /usr/lib/libgtest.a /usr/local/lib/googletest/libgtest.a
+sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/googletest/libgtest_main.a
+
+Otionally:
+Install QT5:
+  sudo apt-get install qt5-default
+  sudo apt-get install qtcreator
+
+Install Qt5Help:
+sudo apt update
+sudo apt install libqt5help5
+
+
+Install Double Commander
+  sudo apt-get install doublecmd-qt
+
+  sudo apt-get install texstudio
+  sudo apt-get install texmaker
+  sudo apt-get install unison unison-gtk
+
+

@@ -1,0 +1,72 @@
+# CMake generated files
+build/
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# TeX aux files
+*.acn
+*.acr
+*.alg
+*.aux
+*.autosave
+*.bbl
+*.blg
+*.glo
+*.glg
+*.gls
+*.idx
+*.ist
+*.ilg
+*.ind
+*.log
+*.lol
+*.lof
+*.lot
+*.mw
+*.nav
+*.run.xml
+*.snm
+*.synctex.gz
+*-blx.bib
+*.toc
+*.vrb
+
+# C++ aux files
+moc_**parameters
+*._*
+
+# CMake and QCreator generated files
+build/*
+*-build/*
+main/include/Config.h
+.kdev4/*
+.*.kate-swp
+CMakeLists.txt.user
+

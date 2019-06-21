@@ -1,0 +1,26 @@
+/**
+@page USER_GUIDE_GENERAL_INFORMATION General information
+
+\tableofcontents
+
+@section USER_GUIDE_Overview_attention Attention
+
+The present version is still in alhpa phase, in the initial phase of development.
+Because of this, serious inconsistencies and missing features are still probable.
+
+
+@section USER_GUIDE_Overview Overview
+
+@subsection What is a benchmark
+
+
+
+The system is still under active development.
+The components are written in plain ANSI C++, and they are developed on  Linux Ubuntu.
+This @ref User_Guide_page assumes some familiarity with  Linux Ubuntu.
+In principle the tools can be multi-platform application, and components are ocassionally
+built for other platforms, but in this early phase of development providing distribution kits
+for all popular platforms is a low priority task.
+
+*/
+

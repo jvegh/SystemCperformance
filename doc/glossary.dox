@@ -1,0 +1,64 @@
+//http://stackoverflow.com/questions/37410255/is-it-possible-to-create-a-central-glossary-with-doxygen
+/** @page APPENDIX
+
+@section Glossary
+
+@subsection GLOSSARY_CPU CPU
+Central Processing Unit
+
+@subsection GLOSSARY_CPP C++
+C++ programming language
+
+@subsection GLOSSARY_FIFO FIFO
+<b>F</b>irst <b>I</b>n <b>F</b>irst <b>O</b>out access style memory
+
+@subsection GLOSSARY_FPGA FPGA
+<b>F</b>ield <b>P</b>rogrammable <b>G</b>ate <b>A</b>rray
+
+@subsection GLOSSARY_HDL HDL
+<b>H</b>ardware <b>D</b>escription <b>L</b>anguage
+
+@subsection GLOSSARY_HPC HPC
+<b>H</b>igh <b>P</b>erformance <b>C</b>omputing
+
+@subsection GLOSSARY_HW HW
+hardware
+
+@subsection GLOSSARY_ID ID
+identity
+
+
+@subsection GLOSSARY_ISA ISA
+Instruction Set Architecture
+
+@subsection GLOSSARY_MCP MCP
+multi- and many-core processor
+
+
+@subsection GLOSSARY_MPI MPI
+Message Passing Interface
+
+
+@subsection GLOSSARY_OS OS
+Operating system
+
+@subsection GLOSSARY_PC PC
+Program Counter
+
+@subsection GLOSSARY_PU PU
+Processing Unit
+
+@subsection GLOSSARY_RC RC
+Reconfigurable
+
+@subsection GLOSSARY_RTL RTL
+Register Transfer Level
+
+
+@subsection GLOSSARY_SystemC electronic circuits
+Essentially a class library, but nearly a language. See  \cite SystemCsite:2017 \cite SystemCBook:2010
+
+@subsection GLOSSARY_SW SW
+software
+
+*/
