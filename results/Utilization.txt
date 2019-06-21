@@ -1,0 +1,50 @@
+The program is a kind of benchmark. It started from the 'next_trigger' example
+of the distribution, and the equivalent functionality was made for 'wait'.
+With the internal repetions count, the test runs through 1000 times the
+module's actions.
+The main test program creates the requested number of identical objects
+starts the simulation. During this several times and the consumed memory is recorded
+and printed at the end.
+
+The program measures the setup (elaboration), the simulation and the wall-clock times,
+and also records system and user times.
+The performance is characterized by MAPS (Million Actions Per Second),
+and calculated for the elaboration only, the simulation only, and for all
+(from the beginning to the end). The RAM is the increase in RAM due to SystemC actions,
+CSw is the number of non-voluntary context switches.
+
+The tex/pdf files show some results derived on the computer with configuration
+shown in Configurations.txt
+
+To run the program  provide {NEXT/WAIT}  #repetitions
+The program will reply with text like
+
+Method 'next_trigger', times in msec
+REPEAT,  Tsetup,  Tsimul,   Twall,   Tuser, Tsystem,  iMAPS,  MAPS,tMAPS, RAM(kb),  CSw,
+   100,   1.284,   9.208,   9.208,   9.208,   0.000,77.862,10.860, 9.531,     248,    0,
+the lines can be copied to spreadsheet programs, or pasted into the .tex files
+producing performance diagrams
+(I used to tun 3-5 times the same command line, and select the lowest times.
+Several factors can increase the running time, but no one can decrease it,
+so the smallest value is the best estimate).
+
+The .tex files make diagram lines from the embedded data
+\begin{filecontents*}{SystemC-Perf_Wait_LenovoDebug.txt}
+REPEAT,  Tsetup,  Tsimul,   Twall,   Tuser, Tsystem,  MAPS, <MAPS>,     RAM,  CSw,
+     1,   0.045,   0.184,   0.184,   0.093,   0.093, 5.431, 4.364, 4873768,    0,
+\end{filecontents*}
+(The header is only needed once, as shown in the examples)
+The procedure is NOT automated, take two arguments and produces just a one-line result.
+To get reasonable results, do not run other programs in the background.
+
+The graphs are produced through the commands in the .tex file trough commands
+\addplot table [x=REPEAT, y= MAPS, col sep=comma] {SystemC-Perf_Wait_LenovoDebug.txt};
+\addlegendentry{$wait$,debug}
+i.e. the corresponding file is named, and the two clumn heads.
+(Take care: LaTeX DOES use the correspondingly named file in your disk,
+and if exists with such a name, and DOES NOT  overwrite it with the contents listed
+in the "filecontents" delimiters. You may also prefer to edit those files.
+I prefer to keep the data with the diagrammin instructions, but I deleted
+the files from the disk when I edited the "filecontents")
+
+

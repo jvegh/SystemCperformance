@@ -1,0 +1,15 @@
+File RooflineSystemClenovoDebugRelease.pdf
+compares the performance and memory consumption in debug and release state.
+Measured on NewLenovoLaptop
+
+RooflineSystemClenovoReleaseWaitNext.pdf
+compares the performance and memory consumption of the modules using
+'wait' and 'next_trigger'
+Measured on NewLenovoLaptop
+
+RooflineSystemC.pdf
+compares the performance of 'wait' and 'next_trigger'
+Measured on OldDesktop, in debug mode
+
+
+

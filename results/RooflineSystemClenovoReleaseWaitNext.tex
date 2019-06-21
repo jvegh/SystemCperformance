@@ -1,0 +1,202 @@
+\documentclass[article]{standalone}               
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{adjustbox}
+\definecolor{webgreen}{rgb}{0,.5,0}
+\definecolor{webbrown}{rgb}{.6,0,0}
+\definecolor{webyellow}{rgb}{0.98,0.92,0.73}
+\definecolor{webgray}{rgb}{.753,.753,.753}
+\definecolor{webblue}{rgb}{0,0,.8}
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
+
+\pgfplotscreateplotcyclelist{my color list}{%
+	densely dashdotted, color=webblue, every mark/.append style={solid, fill=webblue}, mark=*\\%
+	densely dashdotted, color=webred, every mark/.append style={solid, fill=webred},mark=diamond*\\%
+	densely dotted, color=webblue, every mark/.append style={solid, fill=webblue}, mark=*\\%
+	densely dotted, color=webred, every mark/.append style={solid, fill=webred}, mark=diamond*\\%
+	dashed, color=webgreen, every mark/.append style={solid, fill=gray},mark=*\\%
+	dashed, color=webgray,every mark/.append style={solid, fill=gray},mark=diamond*\\%
+	dashdotted, every mark/.append style={solid, fill=gray},mark=otimes*\\%
+%	dashdotdotted, every mark/.append style={solid},mark=star\\%
+	solid, color=webred, every mark/.append style={solid, fill=webred}, mark=o\\%
+	densely dashdotted, color=webgreen, every mark/.append style={solid, fill=webgreen},mark=diamond*\\%
+}
+
+\begin{filecontents*}{SystemC-Perf_Next_LenovoRelease.txt}
+	REPEAT,  Tsetup,  Tsimul,   Twall,   Tuser, Tsystem,  iMAPS,  MAPS, <MAPS>,     RAM,  CSw,
+     1,   0.041,   0.133,   0.133,   0.134,   0.000,24.496, 7.518, 5.753, 2655184,    0,
+     3,   0.053,   0.248,   0.248,   0.248,   0.000,56.904,12.097, 9.976, 2654636,    0,
+     5,   0.062,   0.355,   0.355,   0.000,   0.355,80.252,14.093,11.988, 2656012,    0,
+    10,   0.095,   0.646,   0.646,   0.000,   0.647,105.325,15.476,13.493, 2654984,    0,
+    20,   0.162,   1.198,   1.198,   0.599,   0.599,123.531,16.693,14.706, 2639788,    0,
+    50,   0.340,   3.324,   3.324,   3.325,   0.000,147.259,15.042,13.648, 2638460,    0,
+   100,   0.646,   8.357,   8.351,   8.352,   0.000,154.917,11.966,11.108, 2641328,    1,
+   500,   3.142,  52.808,  52.795,  52.796,   0.000,159.153, 9.468, 8.937, 2644628,    2,
+  1000,   6.285, 104.254, 104.237, 104.238,   0.000,159.107, 9.592, 9.047, 2645108,    1,
+  2000,  14.011, 213.069, 213.069, 213.070,   0.000,142.746, 9.387, 8.807, 2647876,    0,
+  5000,  32.703,1418.641,1418.622,1418.624,   0.000,152.891, 3.524, 3.445, 2654596,    2,
+ 10000,  60.027,5281.455,5281.404,5281.211,   0.195,166.593, 1.893, 1.872, 2664768,    5,
+ 20000, 111.697,13747.516,13747.049,13747.052,   0.000,179.057, 1.455, 1.443, 2686436,   50,
+ 30000, 161.611,22362.563,22360.406,22356.303,   4.108,185.631, 1.342, 1.332, 2708120,  228,
+ 40000, 211.673,32020.379,32018.081,32009.745,   8.338,188.970, 1.249, 1.241, 2731140,  158,
+\end{filecontents*}
+
+\begin{filecontents*}{SystemC-Perf_Wait_LenovoRelease.txt}
+REPEAT,  Tsetup,  Tsimul,   Twall,   Tuser, Tsystem,  iMAPS,  MAPS, <MAPS>,     RAM,  CSw,
+1,   0.049,   0.196,   0.196,   0.099,   0.099,20.301, 5.111, 4.083, 2598160,    0,
+2,   0.056,   0.278,   0.278,   0.278,   0.000,35.508, 7.205, 5.990, 2598516,    0,
+3,   0.067,   0.356,   0.356,   0.000,   0.357,44.665, 8.428, 7.090, 2599580,    0,
+4,   0.075,   0.424,   0.425,   0.425,   0.000,52.986, 9.431, 8.006, 2599520,    0,
+5,   0.080,   0.494,   0.495,   0.000,   0.495,62.466,10.115, 8.706, 2599292,    0,
+6,   0.087,   0.574,   0.575,   0.575,   0.000,68.878,10.448, 9.072, 2605320,    0,
+10,   0.113,   0.876,   0.876,   0.876,   0.000,88.274,11.421,10.113, 2613500,    0,
+20,   0.163,   1.193,   1.193,   0.597,   0.597,122.790,16.765,14.751, 2608736,    0,
+50,   0.429,   4.246,   4.247,   4.248,   0.000,116.619,11.774,10.695, 2606536,    0,
+60,   0.520,   5.879,   5.880,   3.898,   1.982,115.319,10.206, 9.376, 2605708,    0,
+100,   0.827,  10.751,  10.752,  10.645,   0.109,120.963, 9.302, 8.638, 2614824,    0,
+150,   1.250,  17.891,  17.880,  17.881,   0.000,120.011, 8.384, 7.836, 2607220,    1,
+200,   1.640,  26.331,  26.333,  25.487,   0.846,121.987, 7.596, 7.150, 2605948,    0,
+300,   2.505,  40.304,  40.306,  40.307,   0.000,119.766, 7.443, 7.008, 2606872,    0,
+500,   4.129,  65.982,  65.965,  60.862,   5.104,121.092, 7.578, 7.132, 2611224,    1,
+600,   4.079,  65.757,  65.759,  65.760,   0.000,147.107, 9.124, 8.592, 2579748,    0,
+700,   4.500,  77.044,  77.005,  75.968,   1.038,155.539, 9.086, 8.584, 2580252,    2,
+800,   5.340,  88.315,  88.318,  88.318,   0.000,149.800, 9.059, 8.542, 2578516,    0,
+820,   6.904, 110.510, 110.479, 106.384,   4.095,118.766, 7.420, 6.984, 2614492,    4,
+850,   7.278, 117.885, 117.872, 108.730,   9.144,116.784, 7.210, 6.791, 2614300,    2,
+900,   7.633, 135.510, 135.514, 129.272,   6.243,117.907, 6.642, 6.287, 2616008,    0,
+1000,   8.511, 178.567, 178.543, 173.489,   5.056,117.499, 5.600, 5.345, 2616228,    1,
+1100,   9.382, 214.884, 214.859, 210.673,   4.186,117.250, 5.119, 4.905, 2618328,    1,
+1200,  10.334, 258.435, 258.400, 254.435,   3.967,116.121, 4.643, 4.465, 2618532,    1,
+2000,  16.873, 574.782, 574.744, 570.474,   4.271,118.530, 3.480, 3.380, 2627896,    2,
+3000,  25.572,1086.709,1086.648,1080.636,   6.014,117.317, 2.761, 2.697, 2640560,    2,
+5000,  42.029,3008.348,3008.408,2988.293,  20.118,118.964, 1.662, 1.639, 2665212,    5,
+10000,  78.646,8387.388,8385.121,8337.149,  47.975,127.153, 1.192, 1.181, 2724084,  247,
+20000, 145.464,18794.346,18794.551,18710.458,  84.097,137.491, 1.064, 1.056, 2845744,    8,
+25000, 176.732,21441.800,21441.842,21326.029, 115.816,141.457, 1.166, 1.156, 2906228,   10,
+30000, 210.583,26389.027,26389.186,26253.280, 135.910,142.462, 1.137, 1.128, 2967416,    9,
+\end{filecontents*}
+
+\begin{document}
+	
+	%\begin{figure}
+	\maxsizebox{\columnwidth}{!}
+	{
+\begin{tabular}{c}		
+\begin{tikzpicture}
+\begin{axis}
+[
+	title={The rooflines of performance gain of SystemC next/wait, release},
+width=\textwidth,
+cycle list name={my color list},
+legend style={
+	cells={anchor=east},
+	,legend style={at={(1,.85)}}%	legend pos={east},
+},
+xmin=1, xmax=100000,% x scale
+ymin=1, ymax=200, % y scale
+xlabel="No of actions/1000 i.e . No of modules",
+%/pgf/number format/1000 sep={},
+ylabel=$Million~actions/s$,
+xmode=log,
+ymode=log,
+log basis x=10,
+]
+%%\addplot table [x=a, y=g, col sep=comma] {SystemC-Gain_next.txt};
+%%\addlegendentry{$next\_trigger$,elaboration}
+%%\addplot table [x=a, y=g, col sep=comma] {SystemC-Gain_wait.txt};
+%%\addlegendentry{$wait$,elaboration}
+%%\addplot table [x=a, y=h, col sep=comma] {SystemC-Gain_next.txt};
+%%\addlegendentry{$next\_trigger$,simulation}
+%%\addplot table [x=a, y=h, col sep=comma] {SystemC-Gain_wait.txt};
+%%\addlegendentry{$wait$,simulation}
+%%\addplot table [x=a, y=i, col sep=comma] {SystemC-Gain_next.txt};
+%%\addlegendentry{$next\_trigger$,total}
+%%\addplot table [x=a, y=k, col sep=comma] {SystemC-Gain_wait.txt};
+%%\addlegendentry{$wait$,total}
+\addplot table [x=REPEAT, y= iMAPS, col sep=comma] {SystemC-Perf_Next_LenovoRelease.txt};
+\addlegendentry{$next\_trigger$, init}
+\addplot table [x=REPEAT, y= iMAPS, col sep=comma] {SystemC-Perf_Wait_LenovoRelease.txt};
+\addlegendentry{$wait$, init}
+\addplot table [x=REPEAT, y= MAPS, col sep=comma] {SystemC-Perf_Next_LenovoRelease.txt};
+\addlegendentry{$next\_trigger$}
+\addplot table [x=REPEAT, y= MAPS, col sep=comma] {SystemC-Perf_Wait_LenovoRelease.txt};
+\addlegendentry{$wait$}
+\addplot table [x=REPEAT, y= <MAPS>, col sep=comma] {SystemC-Perf_Next_LenovoRelease.txt};
+\addlegendentry{$next\_trigger$, average}
+\addplot table [x=REPEAT, y= <MAPS>, col sep=comma] {SystemC-Perf_Wait_LenovoRelease.txt};
+\addlegendentry{$wait$, average}
+
+%\addplot table [x=REPEAT, y= MAPS, col sep=comma] {SystemC-Perf_Next_Levovo.txt};
+%\addlegendentry{Lenovo i5 laptop, wait, elaboration};
+%
+%
+%%% Roofline of NextTrigger, elaboration
+%%\draw[webblue] (1,30) -- (25,120);
+%%\draw[webblue] (25,120) -- (20000,120);
+%%%% Roofline of wait, elaboration
+%%\draw[webred] (1,25) -- (20,95);
+%%\draw[webred] (20,95) -- (50000,95);
+%%
+%%%% Roofline of next_trigger, simulation
+%%\draw[thick,webblue] (1,13) -- (500,13);
+%%\draw[thick,webblue] (500,13) -- (20000,2.4);
+%%%% Roofline of wait, simulation
+%%\draw[webred] (1,10) -- (200,10);
+%%\draw[webred] (200,10) -- (30000,1.3);
+%
+%
+\end{axis}
+\end{tikzpicture}
+
+\cr
+\begin{tikzpicture}
+\begin{axis}
+[
+title={Memory utilization of SystemC wait},
+width=\textwidth,
+cycle list name={my color list},
+legend style={
+	cells={anchor=east},
+	,legend style={at={(1,.75)}}%	legend pos={east},
+},
+xmin=1, xmax=100000,% x scale
+ymin=2.5e6, ymax=3e6, % y scale
+xlabel="No of actions/1000. i.e . No of modules",
+%/pgf/number format/1000 sep={},
+ylabel=$kilobytes$,
+xmode=log,
+%ymode=log,
+log basis x=10,
+]
+\addplot table [x=REPEAT, y= RAM, col sep=comma] {SystemC-Perf_Next_LenovoRelease.txt};
+\addlegendentry{$next\_trigger$}
+\addplot table [x=REPEAT, y= RAM, col sep=comma] {SystemC-Perf_Wait_LenovoRelease.txt};
+\addlegendentry{$wait$}
+
+%
+%%% Roofline of NextTrigger, elaboration
+%%\draw[webblue] (1,30) -- (25,120);
+%%\draw[webblue] (25,120) -- (20000,120);
+%%%% Roofline of wait, elaboration
+%%\draw[webred] (1,25) -- (20,95);
+%%\draw[webred] (20,95) -- (50000,95);
+%%
+%%%% Roofline of next_trigger, simulation
+%%\draw[thick,webblue] (1,13) -- (500,13);
+%%\draw[thick,webblue] (500,13) -- (20000,2.4);
+%%%% Roofline of wait, simulation
+%%\draw[webred] (1,10) -- (200,10);
+%%\draw[webred] (200,10) -- (30000,1.3);
+%
+%
+\end{axis}
+\end{tikzpicture}
+\end{tabular}
+	}
+	%	\caption{Dependence of "actions per seconds" as measured by the benchmark}
+	%	\label{SupercomputerTOP10Prediction}
+	
+	%\end{figure}
+	
+\end{document}

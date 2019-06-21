@@ -1,5 +1,7 @@
 //BEGIN next_trigger.cpp
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// essentially the next_trigger example, made repeatable
+// Altogether makes 10 iterations and repeat 100 times,
+// i.e. altogether 1000 SystemC action are done on the object
 
 #include <systemc>
 #include "next_trigger.h"

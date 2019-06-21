@@ -1,5 +1,7 @@
 //BEGIN next_trigger.cpp
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// the 'wait' equivalent of the modified next_trigger example
+// Altogether makes 10 iterations and repeat 100 times,
+// i.e. altogether 1000 SystemC action are done on the object
 
 #include <systemc>
 #include "thread_trigger.h"
