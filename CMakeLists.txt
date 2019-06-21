@@ -19,7 +19,7 @@ cmake_policy(SET CMP0048 NEW)
 cmake_minimum_required(VERSION 3.1)
 
 # Maintain your own version here
-set(MyVersion "0.0.1")
+set(MyVersion "0.0.2")
 
 set(CPACK_PACKAGE_NAME "syscperf")
 project(SysCperf VERSION ${MyVersion} LANGUAGES C CXX)
